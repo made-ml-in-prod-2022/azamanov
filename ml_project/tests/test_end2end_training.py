@@ -1,11 +1,9 @@
 import os
 from typing import List
-
-import pytest as pytest
 from py._path.local import LocalPath
 
-from homework1.ml_project.train_pipeline import run_train_pipeline
-from homework1.ml_project.entities import (
+from ..ml_project.train_pipeline import run_train_pipeline
+from ..ml_project.entities import (
     TrainingPipelineParams,
     SplittingParams,
     FeatureParams,
