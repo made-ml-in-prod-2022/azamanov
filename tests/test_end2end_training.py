@@ -2,8 +2,8 @@ import os
 from typing import List
 from py._path.local import LocalPath
 
-from ..train_pipeline import run_train_pipeline
-from ..entities import (
+from homework1.ml_project.train_pipeline import run_train_pipeline
+from homework1.ml_project.entities import (
     TrainingPipelineParams,
     SplittingParams,
     FeatureParams,
