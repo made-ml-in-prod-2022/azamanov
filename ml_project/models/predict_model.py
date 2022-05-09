@@ -1,3 +1,5 @@
+import pickle
+
 import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline
@@ -8,4 +10,16 @@ def predict_model(
 ) -> np.ndarray:
     predicts = model.predict(features)
     return predicts
+
+
+def load_model(model_path) -> Pipeline:
+    with open(model_path, "rb") as f:
+        model = pickle.load(f)
+    return model
+
+
+def save_predicts(predicts: pd.Series, out_path: str):
+    with open(out_path, "w+") as f:
+        predicts_str = ",\n".join(predicts.astype(str))
+        f.write(predicts_str)
 
