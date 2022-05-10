@@ -3,13 +3,13 @@ import sys
 
 import click
 
-from data import read_data
-from models import (
+from ml_project.dataset import read_data
+from ml_project.models import (
     load_model,
     save_predicts,
     predict_model
 )
-from entities import read_predict_pipeline_params
+from ml_project.entities import read_predict_pipeline_params
 
 
 logger = logging.getLogger(__name__)

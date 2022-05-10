@@ -4,13 +4,10 @@ import sys
 
 import click
 
-from data import read_data, split_train_val_data
-from entities.training_pipeline_params import (
-    read_training_pipeline_params,
-)
-from features import make_features
-from features.build_features import extract_target, build_transformer
-from models import (
+from ml_project.dataset import read_data, split_train_val_data
+from ml_project.entities import read_training_pipeline_params
+from ml_project.features import make_features, extract_target, build_transformer
+from ml_project.models import (
     train_model,
     serialize_model,
     predict_model,

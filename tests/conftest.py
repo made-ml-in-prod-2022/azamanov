@@ -40,4 +40,4 @@ def target_col() -> str:
 
 @pytest.fixture()
 def dataset_path() -> str:
-    return "data/heart_cleveland_upload.csv"
+    return "heart_cleveland_upload_sample.csv"

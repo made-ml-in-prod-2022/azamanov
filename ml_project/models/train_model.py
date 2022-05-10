@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_auc_score, f1_score, accuracy_score
 from sklearn.pipeline import Pipeline
 from sklearn.neighbors import KNeighborsClassifier
-from entities import TrainingParams
+from ml_project.entities import TrainingParams
 
 SklearnClassificationModel = Union[RandomForestClassifier, KNeighborsClassifier]
 
