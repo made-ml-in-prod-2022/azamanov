@@ -1,7 +1,6 @@
 import logging
 import sys
-
-import click
+import hydra
 
 from ml_project.dataset import read_data
 from ml_project.models import load_model, save_predicts, predict_model
@@ -31,8 +30,7 @@ def run_predict_pipeline(predict_pipeline_params):
     save_predicts(predicts, predict_pipeline_params.output_prediction_path)
 
 
-@click.command(name="predict_pipeline")
-@click.argument("config_path")
+@hydra.main(config_path="../configs", config_name="pred")
 def predict_pipeline_command(config_path: str):
     predict_pipeline(config_path)
 

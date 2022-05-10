@@ -20,7 +20,6 @@ class TrainingPipelineParams:
 TrainingPipelineParamsSchema = class_schema(TrainingPipelineParams)
 
 
-def read_training_pipeline_params(path: str) -> TrainingPipelineParams:
-    with open(path, "r") as input_stream:
-        schema = TrainingPipelineParamsSchema()
-        return schema.load(yaml.safe_load(input_stream))
+def read_training_pipeline_params(stream: str) -> TrainingPipelineParams:
+    schema = TrainingPipelineParamsSchema()
+    return schema.load(yaml.safe_load(stream))

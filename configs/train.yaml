@@ -7,6 +7,8 @@ splitting_params:
 train_params:
   model_type: "KNeighborsClassifier"
   n_neighbors: 9
+  n_estimators: 50
+  random_state: 27
 feature_params:
   categorical_features:
     - "sex"

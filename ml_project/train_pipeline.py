@@ -1,9 +1,9 @@
 import json
 import logging
 import sys
+import hydra
 
-import click
-
+from omegaconf import DictConfig, OmegaConf
 from ml_project.dataset import read_data, split_train_val_data
 from ml_project.entities import read_training_pipeline_params
 from ml_project.features import make_features, extract_target, build_transformer
@@ -63,10 +63,9 @@ def run_train_pipeline(training_pipeline_params):
     return path_to_model, metrics
 
 
-@click.command(name="train_pipeline")
-@click.argument("config_path")
-def train_pipeline_command(config_path: str):
-    train_pipeline(config_path)
+@hydra.main(config_path="../configs", config_name="train")
+def train_pipeline_command(cfg: DictConfig):
+    train_pipeline(OmegaConf.to_yaml(cfg))
 
 
 if __name__ == "__main__":
