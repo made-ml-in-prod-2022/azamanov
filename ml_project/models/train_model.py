@@ -18,21 +18,18 @@ def train_model(
 ) -> SklearnClassificationModel:
     if train_params.model_type == "RandomForestClassifier":
         model = RandomForestClassifier(
-            n_estimators=train_params.n_estimators, random_state=train_params.random_state
+            n_estimators=train_params.n_estimators,
+            random_state=train_params.random_state,
         )
     elif train_params.model_type == "KNeighborsClassifier":
-        model = KNeighborsClassifier(
-            n_neighbors=train_params.n_neighbors
-        )
+        model = KNeighborsClassifier(n_neighbors=train_params.n_neighbors)
     else:
         raise NotImplementedError()
     model.fit(features, target)
     return model
 
 
-def evaluate_model(
-    predicts: np.ndarray, target: pd.Series
-) -> Dict[str, float]:
+def evaluate_model(predicts: np.ndarray, target: pd.Series) -> Dict[str, float]:
     return {
         "roc_auc_score": roc_auc_score(target, predicts),
         "f1_score": f1_score(target, predicts),

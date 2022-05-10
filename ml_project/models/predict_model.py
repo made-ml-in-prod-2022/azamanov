@@ -5,9 +5,7 @@ import pandas as pd
 from sklearn.pipeline import Pipeline
 
 
-def predict_model(
-    model: Pipeline, features: pd.DataFrame
-) -> np.ndarray:
+def predict_model(model: Pipeline, features: pd.DataFrame) -> np.ndarray:
     predicts = model.predict(features)
     return predicts
 
@@ -22,4 +20,3 @@ def save_predicts(predicts: pd.Series, out_path: str):
     with open(out_path, "w+") as f:
         predicts_str = ",\n".join(predicts.astype(str))
         f.write(predicts_str)
-

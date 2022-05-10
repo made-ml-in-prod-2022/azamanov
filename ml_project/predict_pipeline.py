@@ -4,11 +4,7 @@ import sys
 import click
 
 from ml_project.dataset import read_data
-from ml_project.models import (
-    load_model,
-    save_predicts,
-    predict_model
-)
+from ml_project.models import load_model, save_predicts, predict_model
 from ml_project.entities import read_predict_pipeline_params
 
 

@@ -10,27 +10,12 @@ def change_test_dir(request, monkeypatch):
 
 @pytest.fixture()
 def categorical_features() -> List[str]:
-    return [
-        "sex",
-        "cp",
-        "fbs",
-        "restecg",
-        "exang",
-        "slope",
-        "ca",
-        "thal"
-    ]
+    return ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]
 
 
 @pytest.fixture
 def numerical_features() -> List[str]:
-    return [
-        "age",
-        "trestbps",
-        "chol",
-        "thalach",
-        "oldpeak"
-    ]
+    return ["age", "trestbps", "chol", "thalach", "oldpeak"]
 
 
 @pytest.fixture()

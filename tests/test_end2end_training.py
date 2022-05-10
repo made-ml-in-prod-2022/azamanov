@@ -42,8 +42,7 @@ def test_train_e2e(
     params = PredictPipelineParams(
         model_path=real_model_path,
         dataset_path=dataset_path,
-        output_prediction_path=expected_output_prediction_path
+        output_prediction_path=expected_output_prediction_path,
     )
     run_predict_pipeline(params)
     assert os.path.exists(expected_output_model_path)
-
