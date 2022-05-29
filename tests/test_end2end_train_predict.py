@@ -19,7 +19,7 @@ def test_train_e2e(
     categorical_features: List[str],
     numerical_features: List[str],
     target_col: str,
-):
+) -> None:
     expected_output_model_path = tmpdir.join("model.pkl")
     expected_metric_path = tmpdir.join("metrics.json")
     expected_output_prediction_path = tmpdir.join("predictions.txt")
@@ -39,10 +39,10 @@ def test_train_e2e(
     assert metrics["roc_auc_score"] > 0
     assert os.path.exists(real_model_path)
     assert os.path.exists(params.metric_path)
-    params = PredictPipelineParams(
+    pred_params = PredictPipelineParams(
         model_path=real_model_path,
         dataset_path=dataset_path,
         output_prediction_path=expected_output_prediction_path,
     )
-    run_predict_pipeline(params)
+    run_predict_pipeline(pred_params)
     assert os.path.exists(expected_output_model_path)

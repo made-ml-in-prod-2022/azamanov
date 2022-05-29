@@ -1,11 +1,13 @@
 import json
 import logging
 import sys
+from typing import Dict, Tuple
+
 import hydra
 
 from omegaconf import DictConfig, OmegaConf
 from ml_project.dataset import read_data, split_train_val_data
-from ml_project.entities import read_training_pipeline_params
+from ml_project.entities import read_training_pipeline_params, TrainingPipelineParams
 from ml_project.features import make_features, extract_target, build_transformer
 from ml_project.models import (
     train_model,
@@ -21,13 +23,15 @@ logger.setLevel(logging.INFO)
 logger.addHandler(handler)
 
 
-def train_pipeline(config_path: str):
+def train_pipeline(config_path: str) -> Tuple[str, Dict[str, float]]:
     training_pipeline_params = read_training_pipeline_params(config_path)
 
     return run_train_pipeline(training_pipeline_params)
 
 
-def run_train_pipeline(training_pipeline_params):
+def run_train_pipeline(
+    training_pipeline_params: TrainingPipelineParams,
+) -> Tuple[str, Dict[str, float]]:
     logger.info(f"start train pipeline with params {training_pipeline_params}")
     data = read_data(training_pipeline_params.input_data_path)
     logger.info(f"data.shape is {data.shape}")
@@ -64,7 +68,7 @@ def run_train_pipeline(training_pipeline_params):
 
 
 @hydra.main(config_path="../configs", config_name="train")
-def train_pipeline_command(cfg: DictConfig):
+def train_pipeline_command(cfg: DictConfig) -> None:
     train_pipeline(OmegaConf.to_yaml(cfg))
 
 

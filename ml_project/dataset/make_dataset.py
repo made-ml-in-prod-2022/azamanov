@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO, format=log_fmt)
 
 def read_data(path: str) -> pd.DataFrame:
     data = pd.read_csv(path)
-    logger.debug("Read dataset from %s, len = %d".format(path, len(data)))
+    logger.debug("Read dataset from %s, len = %d".format(path, int(len(data))))
     return data
 
 
