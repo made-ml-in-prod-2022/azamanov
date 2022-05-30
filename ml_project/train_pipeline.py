@@ -23,15 +23,15 @@ logger.setLevel(logging.INFO)
 logger.addHandler(handler)
 
 
-def train_pipeline(config_path: str) -> Tuple[str, Dict[str, float]]:
+def train_pipeline(config_path: str) -> None:
     training_pipeline_params = read_training_pipeline_params(config_path)
 
-    return run_train_pipeline(training_pipeline_params)
+    run_train_pipeline(training_pipeline_params)
 
 
 def run_train_pipeline(
     training_pipeline_params: TrainingPipelineParams,
-) -> Tuple[str, Dict[str, float]]:
+) -> None:
     logger.info(f"start train pipeline with params {training_pipeline_params}")
     data = read_data(training_pipeline_params.input_data_path)
     logger.info(f"data.shape is {data.shape}")
@@ -64,7 +64,7 @@ def run_train_pipeline(
     path_to_model = serialize_model(
         inference_pipeline, training_pipeline_params.output_model_path
     )
-    return path_to_model, metrics
+    logger.info(f"path to model is {path_to_model}")
 
 
 @hydra.main(config_path="../configs", config_name="train")

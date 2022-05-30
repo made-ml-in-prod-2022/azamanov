@@ -16,7 +16,7 @@ logger.addHandler(handler)
 def predict_pipeline(config_path: str) -> None:
     predict_pipeline_params = read_predict_pipeline_params(config_path)
 
-    return run_predict_pipeline(predict_pipeline_params)
+    run_predict_pipeline(predict_pipeline_params)
 
 
 def run_predict_pipeline(predict_pipeline_params: PredictPipelineParams) -> None:

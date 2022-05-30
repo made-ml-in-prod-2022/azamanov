@@ -2,6 +2,8 @@ from dataclasses import dataclass
 
 from marshmallow_dataclass import class_schema
 import yaml
+from omegaconf import DictConfig
+from yaml import BaseLoader
 
 
 @dataclass()
@@ -14,7 +16,6 @@ class PredictPipelineParams:
 PredictPipelineParamsSchema = class_schema(PredictPipelineParams)
 
 
-def read_predict_pipeline_params(path: str) -> PredictPipelineParams:
-    with open(path, "r") as input_stream:
-        schema = PredictPipelineParamsSchema()
-        return schema.load(yaml.safe_load(input_stream))
+def read_predict_pipeline_params(stream: DictConfig) -> PredictPipelineParams:
+    schema = PredictPipelineParamsSchema()
+    return schema.load(yaml.safe_load(stream))

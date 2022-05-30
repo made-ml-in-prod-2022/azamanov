@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from omegaconf import DictConfig
+
 from .splitting_params import SplittingParams
 from .feature_params import FeatureParams
 from .training_params import TrainingParams
@@ -20,6 +22,6 @@ class TrainingPipelineParams:
 TrainingPipelineParamsSchema = class_schema(TrainingPipelineParams)
 
 
-def read_training_pipeline_params(stream: str) -> TrainingPipelineParams:
+def read_training_pipeline_params(stream: DictConfig) -> TrainingPipelineParams:
     schema = TrainingPipelineParamsSchema()
     return schema.load(yaml.safe_load(stream))
