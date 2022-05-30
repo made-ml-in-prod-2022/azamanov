@@ -2,7 +2,7 @@
 import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from typing import Tuple
+from typing import Tuple, Dict, Any
 from ml_project.entities import SplittingParams
 
 logger = logging.getLogger(__name__)
@@ -16,8 +16,12 @@ def read_data(path: str) -> pd.DataFrame:
     return data
 
 
+def get_df_from_data(data: Dict[str, Any]) -> pd.DataFrame:
+    return pd.DataFrame(data, index=[0])
+
+
 def split_train_val_data(
-    data: pd.DataFrame, params: SplittingParams
+        data: pd.DataFrame, params: SplittingParams
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     train_data, test_data = train_test_split(
         data, test_size=params.test_size, random_state=params.random_state

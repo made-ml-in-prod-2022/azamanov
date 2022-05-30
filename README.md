@@ -1,15 +1,12 @@
 # azamanov
-ДЗ1 Машинное обучение в продакшене
+ДЗ2 Машинное обучение в продакшене
 
-Установка:
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+Скачивание образа:
+docker pull zamanov/ml_in_prod_hw2:latest
 
-Запуск:
-PYTHONPATH=. python ml_project/train_pipeline.py hydra.run.dir=. [config params]
-где config params - параметры конфигурации (например, train_params.model_type=RandomForestClassifier)
+Запуск контейнера:
+docker run -p 8000:8000 zamanov/ml_in_prod_hw2:latest
 
-Запуск предикта:
-PYTHONPATH=. python ml_project/predict_pipeline.py hydra.run.dir=. [config params]
-где config params - параметры конфигурации (например, train_params.model_type=RandomForestClassifier)
+Запуск скрипта для запросов к сервису:
+python online_inference/request_service.py URL NUM_REQUESTS
+где URL - адрес, по которому делать запросы, NUM_REQUESTS - количество запросов

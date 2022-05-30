@@ -1,0 +1,1 @@
+from .predict_pipeline import online_predict_pipeline

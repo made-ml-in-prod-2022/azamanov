@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from marshmallow_dataclass import class_schema
 import yaml
 from omegaconf import DictConfig
-from yaml import BaseLoader
 
 
 @dataclass()

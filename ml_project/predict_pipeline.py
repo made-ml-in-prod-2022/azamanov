@@ -1,11 +1,13 @@
 import logging
 import sys
+from typing import Dict
+
 import hydra
 
-from ml_project.dataset import read_data
+from ml_project.dataset import read_data, get_df_from_data
 from ml_project.models import load_model, save_predicts, predict_model
 from ml_project.entities import read_predict_pipeline_params, PredictPipelineParams
-
+from sklearn.pipeline import Pipeline
 
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler(sys.stdout)
@@ -28,6 +30,15 @@ def run_predict_pipeline(predict_pipeline_params: PredictPipelineParams) -> None
     predicts = predict_model(model, data)
 
     save_predicts(predicts, predict_pipeline_params.output_prediction_path)
+
+
+def online_predict_pipeline(data: Dict, model: Pipeline):
+    logger.info(f"start predict pipeline with {data}")
+    df = get_df_from_data(data)
+    logger.info("get df from data")
+    predicts = predict_model(model, df)
+    logger.info(f"predict: {predicts}")
+    return predicts
 
 
 @hydra.main(config_path="../configs", config_name="pred")
